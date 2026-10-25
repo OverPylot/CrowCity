@@ -1,0 +1,11 @@
+{
+  "name": "crowcity",
+  "version": "6.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check dist/app.js && node --check dist/generator.js && node --check dist/city-network.js && node --check dist/city-outskirts.js && node --check dist/city-plots.js && node --check dist/city-landscape.js && node --check dist/map-gestures.js && node --check dist/i18n.js && node --check dist/render.js && node --test tests/generator.test.mjs tests/interface.test.mjs",
+    "start": "node scripts/serve.mjs"
+  },
+  "description": "Seeded city and dungeon map workshop with English and Hungarian interfaces."
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#20211e">
+  <meta name="description" content="Változatos alaprajzok, saját negyedek és épületjelölések. Egy tiszta térkép, amit te töltesz meg tartalommal.">
+  <title>CrowCity — Térképműhely</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' rx='16' fill='%2320211e'/%3E%3Cpath d='M40 8 48 32 72 40 48 48 40 72 32 48 8 40 32 32Z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./atelier.css">
+  <link rel="stylesheet" href="./mobile.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-compass" viewBox="0 0 24 24"><path d="m12 1 2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6Z"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-city" viewBox="0 0 24 24"><path d="M3 21V9l5-4 5 4v12M13 21V3h7v18M1 21h22M6 12h3m-3 4h3m7-9h1m-1 4h1m-1 4h1M6 21v-2h3v2"/></symbol>
+    <symbol id="i-dungeon" viewBox="0 0 24 24"><path d="M3 21V8l4-5h10l4 5v13M3 9h18M8 21v-7a4 4 0 0 1 8 0v7M7 3v6m5-6v6m5-6v6M3 15h5m8 0h5M1 21h22"/></symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r=".8" fill="currentColor"/><circle cx="16" cy="8" r=".8" fill="currentColor"/><circle cx="12" cy="12" r=".8" fill="currentColor"/><circle cx="8" cy="16" r=".8" fill="currentColor"/><circle cx="16" cy="16" r=".8" fill="currentColor"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M3 3l6 6m12-6-6 6M3 21l6-6m12 6-6-6"/></symbol>
+    <symbol id="i-fit" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 8h8v8H8Z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4Z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L21 7l-5-5L4 14Z"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="m9 15 6-6m-7 3L6 14a4 4 0 0 0 6 6l3-3m1-5 2-2a4 4 0 0 0-6-6L9 7"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></symbol>
+    <symbol id="i-cursor" viewBox="0 0 24 24"><path d="m5 3 15 10-8 1-4 7Z"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5a2 2 0 0 1 4 0v6-8a2 2 0 0 1 4 0v8-5a2 2 0 0 1 4 0v10c0 4-3 6-7 6-2 0-4-1-6-4l-4-6a2 2 0 0 1 3-2l4 5"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22S4 14 4 9a8 8 0 1 1 16 0c0 5-8 13-8 13Z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+    <symbol id="i-polygon" viewBox="0 0 24 24"><path d="m5 5 14-2 2 15-11 4-7-8Z"/><circle cx="5" cy="5" r="2" fill="white"/><circle cx="19" cy="3" r="2" fill="white"/><circle cx="21" cy="18" r="2" fill="white"/><circle cx="10" cy="22" r="2" fill="white"/><circle cx="3" cy="14" r="2" fill="white"/></symbol>
+    <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 7V3h16v4M12 3v18m-4 0h8"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M8 4 3 9l5 5M3 9h11a7 7 0 0 1 0 14"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="m16 4 5 5-5 5m5-5H10a7 7 0 0 0 0 14"/></symbol>
+  </defs></svg>
+
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="CrowCity kezdőlap"><span class="brand-mark"><svg class="icon"><use href="#i-compass"/></svg></span><span>CrowCity<small>TÉRKÉPEK A SAJÁT VILÁGODHOZ</small></span></a>
+    <nav aria-label="Főmenü"><span class="nav-active">Térképműhely</span><button id="open-saved" class="nav-button"><svg class="icon" aria-hidden="true"><use href="#i-bookmark"/></svg>Mentett térképek <span id="saved-count" class="count">0</span></button></nav>
+    <label class="language-control"><span>Nyelv</span><select id="language" aria-label="Nyelv / Language"><option value="hu">Magyar</option><option value="en">English</option></select></label>
+    <button id="open-help" class="help-button" aria-label="Útmutató"><svg class="icon"><use href="#i-info"/></svg><span>Útmutató</span></button>
+  </header>
+
+  <main>
+    <section class="page-intro"><div><div class="eyebrow">EGY SEED. EGY ÚJ VILÁG.</div><h1>Térképműhely<span class="heading-dot">.</span></h1><p>Tiszta alaprajz. Saját negyedek. A te történeted.</p></div><div class="intro-note"><span class="status-dot"></span> A kaland nálad kezdődik.</div></section>
+
+    <div class="workbench" id="workbench">
+      <aside id="generator-panel" class="controls panel" aria-label="Generátor beállításai">
+        <div class="panel-eyebrow">01 <span>GENERÁTOR</span></div>
+        <div class="mode-switch" role="group" aria-label="Térképtípus"><button data-mode="city" class="active" aria-pressed="true"><svg class="icon"><use href="#i-city"/></svg>Város</button><button data-mode="dungeon" aria-pressed="false"><svg class="icon"><use href="#i-dungeon"/></svg>Dungeon</button></div>
+
+        <label class="field-label" for="seed">A világ seedje <svg class="icon tiny" aria-hidden="true"><use href="#i-spark"/></svg></label>
+        <div class="seed-field"><input id="seed" value="HOLLÓRÉV-27" maxlength="80" autocomplete="off" spellcheck="false"><button id="random-seed" class="icon-button" title="Véletlen seed" aria-label="Véletlen seed"><svg class="icon"><use href="#i-dice"/></svg></button></div>
+        <p class="field-hint">Ugyanaz a seed és beállítás, ugyanaz a világ.</p>
+        <div class="rule"></div>
+        <div id="generator-fields"></div>
+        <div class="generator-actions">
+        <button class="primary-button generate-button" id="generate"><svg class="icon"><use href="#i-spark"/></svg>Alaprajz generálása<svg class="icon"><use href="#i-arrow"/></svg></button>
+        <button class="surprise-button" id="surprise"><svg class="icon" aria-hidden="true"><use href="#i-dice"/></svg>Véletlen beállítások és új seed</button>
+        <div class="pending-state" id="pending-state" aria-live="polite"></div>
+        </div>
+        <div class="layer-section"><div class="panel-eyebrow">SAJÁT RÉTEGEK</div><label class="check-row"><input type="checkbox" id="layer-districts" checked><span>Színes negyedek</span></label><label class="check-row"><input type="checkbox" id="layer-buildings" checked><span>Épületjelölések</span></label><label class="check-row"><input type="checkbox" id="layer-pins" checked><span>Helyszínek és feliratok</span></label><label class="check-row"><input type="checkbox" id="labels" checked><span>Saját nevek megjelenítése</span></label><label class="check-row"><input type="checkbox" id="grid"><span>Négyzetrács</span></label></div>
+        <div class="seed-link"><button id="copy-link"><svg class="icon"><use href="#i-link"/></svg>Seedlink másolása</button><span>Csak a seedet és a beállításokat osztja meg.</span></div>
+      </aside>
+
+      <section id="map-panel" class="map-panel panel" aria-label="Generált térkép">
+        <div class="map-toolbar"><div class="map-title-group"><div class="map-kicker"><span id="map-kind">VÁROSTÉRKÉP</span><span>•</span><span id="map-seed">HOLLÓRÉV-27</span></div><div class="map-title-row"><h2 id="map-title">Hollórév</h2><button id="rename-map" class="icon-button small" title="Térkép átnevezése" aria-label="Térkép átnevezése"><svg class="icon"><use href="#i-edit"/></svg></button></div><p id="map-meta"></p></div><div class="map-actions"><button id="save-map" class="outline-button" title="Mentés ebben a böngészőben"><svg class="icon"><use href="#i-bookmark"/></svg><span>Mentés</span></button><div class="export-wrapper"><button id="export-toggle" aria-label="Export" class="outline-button" aria-expanded="false"><svg class="icon"><use href="#i-download"/></svg><span>Export</span><svg class="icon tiny"><use href="#i-chevron"/></svg></button><div class="export-menu" id="export-menu" hidden><button data-export="svg">Vektoros térkép <span>.svg</span></button><button data-export="png">Nagy felbontású kép <span>.png</span></button><button data-export="json">Mesélői mentés <span>.json</span></button><button data-export="print">Térkép nyomtatása</button></div></div></div></div>
+        <div class="view-bar"><div class="view-switch" role="group" aria-label="Térképnézet"><button id="dm-view" class="active" aria-pressed="true"><svg class="icon"><use href="#i-lock"/></svg>Mesélői</button><button id="player-view" aria-pressed="false"><svg class="icon"><use href="#i-eye"/></svg>Játékos</button></div><span class="view-hint" id="view-hint">A titkokat csak te látod.</span></div>
+        <div class="editor-toolbar" id="editor-toolbar" role="group" aria-label="Térképszerkesztő eszközök"><button data-tool="select" class="active" aria-pressed="true" title="Kijelölés, kattintásra eszközmenü (V)"><svg class="icon"><use href="#i-cursor"/></svg><span>Kijelölés</span></button><button data-tool="pan" aria-pressed="false" title="Térkép mozgatása (H)"><svg class="icon"><use href="#i-hand"/></svg><span>Mozgatás</span></button><span class="tool-divider"></span><button data-tool="pin" aria-pressed="false" title="Helyszín hozzáadása (P)"><svg class="icon"><use href="#i-pin"/></svg><span>Helyszín</span></button><button data-tool="building" aria-pressed="false" title="Épület vagy dungeonterem megjelölése (B)"><svg class="icon"><use href="#i-city"/></svg><span>Épület</span></button><button data-tool="district" aria-pressed="false" title="Negyed pontonkénti rajzolása (N)"><svg class="icon"><use href="#i-polygon"/></svg><span>Negyed</span></button><button data-tool="text" aria-pressed="false" title="Saját felirat hozzáadása (T)"><svg class="icon"><use href="#i-text"/></svg><span>Felirat</span></button><div class="history-tools"><button id="undo" class="icon-button" title="Visszavonás (Ctrl+Z)" aria-label="Visszavonás" disabled><svg class="icon"><use href="#i-undo"/></svg></button><button id="redo" class="icon-button" title="Újra (Ctrl+Shift+Z)" aria-label="Újra" disabled><svg class="icon"><use href="#i-redo"/></svg></button></div></div>
+        <div class="drawing-status" id="drawing-status" hidden><span id="drawing-hint">Kattints a negyed határpontjaira.</span><label><input type="checkbox" id="snap" checked> Illesztés</label><button id="remove-vertex" title="Utolsó pont visszavonása">↶</button><button id="finish-district" disabled>Lezárás <span>↵</span></button><button id="cancel-district" aria-label="Negyedrajzolás megszakítása">×</button></div>
+        <div class="map-viewport" id="map-viewport" tabindex="0" aria-label="Térkép. Húzással mozgatható, a gombokkal nagyítható."><div id="map-render"></div><div class="map-context" id="map-context" hidden><div class="context-title">MIT ADJUNK IDE?</div><button data-context="pin"><svg class="icon"><use href="#i-pin"/></svg>Helyszín hozzáadása</button><button data-context="building"><svg class="icon"><use href="#i-city"/></svg>Épület / terem jelölése</button><button data-context="district"><svg class="icon"><use href="#i-polygon"/></svg>Negyed rajzolása innen</button><button data-context="text"><svg class="icon"><use href="#i-text"/></svg>Felirat hozzáadása</button></div><div class="zoom-toolbar"><button id="zoom-in" class="icon-button" title="Nagyítás" aria-label="Nagyítás"><svg class="icon"><use href="#i-plus"/></svg></button><span id="zoom-value">100%</span><button id="zoom-out" class="icon-button" title="Kicsinyítés" aria-label="Kicsinyítés"><svg class="icon"><use href="#i-minus"/></svg></button><div></div><button id="zoom-fit" class="icon-button" title="Teljes térkép" aria-label="Teljes térkép"><svg class="icon"><use href="#i-fit"/></svg></button><button id="map-focus" class="icon-button" title="Teljes képernyő" aria-label="Teljes képernyő" aria-pressed="false"><svg class="icon"><use href="#i-expand"/></svg></button></div></div>
+        <div class="map-footer"><span><span class="small-dot"></span><span id="map-footer-text">Kattints a térképre az eszközmenühöz.</span></span><span id="generator-version">GENERÁTOR V2</span></div>
+      </section>
+
+      <aside id="marks-panel" class="location-panel panel" aria-label="Saját jelölések és tulajdonságok"><div class="locations-header"><div class="panel-eyebrow">02 <span>SAJÁT JELÖLÉSEK</span></div><span id="place-count" class="count"></span></div><label class="place-search"><svg class="icon"><use href="#i-search"/></svg><input id="place-search" type="search" placeholder="Jelölés keresése…" aria-label="Jelölés keresése"></label><div id="place-list" class="place-list" role="group" aria-label="Válassz egy jelölést"></div><div class="detail-divider"><span>KIJELÖLT ELEM</span></div><div id="place-details" class="place-details"></div></aside>
+    </div>
+    <footer class="page-footer"><span>Készülj fel. Aztán hagyd, hogy eltévedjenek.</span><span>CrowCity · Seedalapú térképek mesélőknek</span></footer>
+  </main>
+
+  <nav class="mobile-nav" role="tablist" aria-label="Munkafelület"><button id="mobile-map" role="tab" data-mobile-panel="map" aria-controls="map-panel" aria-selected="true"><svg class="icon"><use href="#i-compass"/></svg><span>Térkép</span></button><button id="mobile-generator" role="tab" data-mobile-panel="generator" aria-controls="generator-panel" aria-selected="false"><svg class="icon"><use href="#i-spark"/></svg><span>Generátor</span></button><button id="mobile-marks" role="tab" data-mobile-panel="marks" aria-controls="marks-panel" aria-selected="false"><svg class="icon"><use href="#i-pin"/></svg><span>Jelölések</span></button></nav>
+
+  <dialog id="saved-dialog" class="wide-dialog"><div class="dialog-top"><div><div class="eyebrow">A SAJÁT ATLASZOD</div><h2>Mentett térképek</h2></div><button class="icon-button" data-close="saved-dialog" aria-label="Bezárás"><svg class="icon"><use href="#i-close"/></svg></button></div><p class="dialog-description">Ebben a böngészőben tárolt térképeid. Másik eszközre a mesélői JSON-mentéssel viheted át őket.</p><div id="saved-list" class="saved-list"></div><div class="dialog-bottom"><button class="outline-button" id="import-map"><svg class="icon"><use href="#i-upload"/></svg>JSON-mentés megnyitása</button><button class="text-button" data-close="saved-dialog">Vissza a műhelybe<svg class="icon"><use href="#i-arrow"/></svg></button></div></dialog>
+  <dialog id="rename-dialog"><form id="rename-form"><div class="dialog-top"><h2>Adj nevet a helynek.</h2><button type="button" class="icon-button" data-close="rename-dialog" aria-label="Bezárás"><svg class="icon"><use href="#i-close"/></svg></button></div><label class="field-label" for="new-map-name">Térkép neve</label><input id="new-map-name" maxlength="80" required><div class="dialog-bottom"><button type="button" class="text-button" data-close="rename-dialog">Mégse</button><button class="primary-button" type="submit">Átnevezés<svg class="icon"><use href="#i-check"/></svg></button></div></form></dialog>
+  <dialog id="help-dialog"><div class="dialog-top"><div><div class="eyebrow">A TE TÉRKÉPASZTALOD</div><h2>Az alaprajz csak a kezdet.</h2></div><button class="icon-button" data-close="help-dialog" aria-label="Bezárás"><svg class="icon"><use href="#i-close"/></svg></button></div><ol class="help-steps"><li><strong>Generálj egy üres alaprajzot.</strong><p>Válassz utcaszerkezetet, településformát vagy dungeon-elrendezést. A részletes beállításokkal az épületméretet, szabálytalanságot, utcákat és járatokat is változtathatod. A véletlen gomb a beállításokat és a seedet együtt cseréli.</p></li><li><strong>Csak az kerül rá, amit te teszel oda.</strong><p>Kattints a térképre az eszközmenühöz, vagy válassz eszközt a térkép felett. Helyszínt és feliratot üres területre is tehetsz. Az Épület eszközzel egy házra vagy egy dungeonteremre kattintva megjelölheted azt.</p></li><li><strong>Rajzold meg a negyedeidet.</strong><p>A Negyed eszközzel kattints sorban a határpontokra, majd az első pontra vagy a Lezárás gombra. A közeli meglévő határvonalakhoz és csúcsokhoz automatikusan illeszkednek az új pontok, ha az Illesztés be van kapcsolva.</p></li><li><strong>Szerkeszd és mozgasd a jelöléseket.</strong><p>Kijelölés után jobbra átírhatod a nevet, színt, leírást és mesélői jegyzetet. A negyed csúcspontjai húzhatók; a negyedet, helyszínt vagy feliratot egészben is mozgathatod. Az épülethez kötött jelölés a házon marad. A módosítások automatikusan megmaradnak a piszkozatban.</p></li><li><strong>Vond vissza, mentsd el, vidd magaddal.</strong><p>A szerkesztés és az újragenerálás is visszavonható a nyílgombokkal. A Mentés a böngésződ atlaszába teszi a teljes térképet. A JSON-export tartalmazza az alaprajzot, negyedeket és jelöléseket; a seedlink csak az alaprajzot.</p></li></ol><p class="help-tip">V: kijelölés · H: mozgatás · P: helyszín · B: épület · N: negyed · T: felirat<br>Enter: negyed lezárása · Backspace: utolsó pont törlése · Esc: megszakítás<br>Ctrl+Z: visszavonás · Ctrl+Shift+Z: újra · + / −: nagyítás · 0: teljes térkép</p></dialog>
+  <dialog id="annotation-dialog"><form id="annotation-form"><div class="dialog-top"><div><div class="eyebrow">SAJÁT TARTALOM</div><h2 id="annotation-dialog-title">Jelölés hozzáadása</h2></div><button type="button" class="icon-button" data-close="annotation-dialog" aria-label="Bezárás"><svg class="icon"><use href="#i-close"/></svg></button></div><div id="annotation-fields"></div><div class="dialog-bottom"><button type="button" class="text-button" data-close="annotation-dialog">Mégse</button><button type="submit" class="primary-button">Hozzáadás<svg class="icon"><use href="#i-plus"/></svg></button></div></form></dialog>
+  <input type="file" id="import-file" accept=".json,application/json" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
